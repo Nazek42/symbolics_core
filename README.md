@@ -1,5 +1,5 @@
 # symbolics_core
-The core library for the Symbolics symbolic math library
+Core expression module for the symbolics computer algebra library
 
 This library allows the creation of mathematical expressions containing *symbols*.
 The expressions form a tree, which can be traversed and manipulated with helper libraries.
