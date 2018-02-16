@@ -1,6 +1,6 @@
 #[macro_use]
-extern crate symbolics_expressions;
-use symbolics_expressions::consts::e;
+extern crate symbolics_core;
+use symbolics_core::consts::e;
 
 #[test]
 fn quadratic_s() {
