@@ -26,7 +26,7 @@ impl Expr {
     ///
     /// ```
     /// # #[macro_use]
-    /// # extern crate symbolics_expressions;
+    /// # extern crate symbolics_core;
     /// # fn main() {
     ///       let y = 3*s!(x).squared() + 2;
     ///       let y_2 = y.apply1("x", 2);
@@ -36,7 +36,7 @@ impl Expr {
     ///
     /// ```
     /// # #[macro_use]
-    /// # extern crate symbolics_expressions;
+    /// # extern crate symbolics_core;
     /// # fn main() {
     ///       let y = 3*s!(x) + 2;
     ///       let y_t = y.apply1("x", s!(t).squared());

@@ -5,7 +5,7 @@
 ///
 /// ```
 /// # #[macro_use]
-/// # extern crate symbolics_expressions;
+/// # extern crate symbolics_core;
 /// # fn main() {
 ///       let x = s!(x);
 ///       assert_eq!(format!("{:?}", x), "Symbol(\"x\")");
@@ -22,7 +22,7 @@ macro_rules! s {
 ///
 /// ```
 /// #[macro_use]
-/// extern crate symbolics_expressions;
+/// extern crate symbolics_core;
 /// fn main() {
 ///     let expr = s!(x) * s!(x).sqrt();
 ///     assert_eq!(apply!(expr @ x=4.).val().unwrap(), 8.);
@@ -31,7 +31,7 @@ macro_rules! s {
 ///
 /// ```
 /// #[macro_use]
-/// extern crate symbolics_expressions;
+/// extern crate symbolics_core;
 /// use std::f64::consts::E;
 /// fn main() {
 ///     let expr = s!(x) + s!(x).sqrt();

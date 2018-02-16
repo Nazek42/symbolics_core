@@ -1,5 +1,5 @@
 [package]
-name = "symbolics_expressions"
+name = "symbolics_core"
 version = "0.1.0"
 authors = ["Benjamin Kulas <nazekthetweaker@gmail.com>"]
 
