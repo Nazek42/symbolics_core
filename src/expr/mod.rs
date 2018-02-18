@@ -6,7 +6,6 @@ pub enum Expr {
     Mul(Box<Expr>, Box<Expr>),
     Pow(Box<Expr>, Box<Expr>),
     Log(Box<Expr>, Box<Expr>),
-    Neg(Box<Expr>),
     Sin(Box<Expr>),
     Cos(Box<Expr>),
     Arcsin(Box<Expr>),
