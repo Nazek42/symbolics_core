@@ -15,5 +15,5 @@ fn exponential_nref() {
     let t = s!(t);
     let exp = e() ^ (-!&k * !&t);
     assert_eq!(format!("{:?}", exp),
-    "Pow(Symbol(\"$e\"), Mul(Neg(Symbol(\"k\")), Symbol(\"t\")))");
+    "Pow(Symbol(\"$e\"), Mul(Mul(Symbol(\"k\"), Num(-1.0)), Symbol(\"t\")))");
 }

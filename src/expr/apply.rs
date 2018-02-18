@@ -57,7 +57,6 @@ impl Expr {
             Mul(a, b) => recursive_apply!(Mul(a, b), name, value.clone()),
             Pow(a, b) => recursive_apply!(Pow(a, b), name, value.clone()),
             Log(a, b) => recursive_apply!(Log(a, b), name, value.clone()),
-            Neg(x) => recursive_apply!(Neg(x), name, value.clone()),
             Sin(x) => recursive_apply!(Sin(x), name, value.clone()),
             Cos(x) => recursive_apply!(Cos(x), name, value.clone()),
             Arcsin(x) => recursive_apply!(Arcsin(x), name, value.clone()),
@@ -70,7 +69,6 @@ impl Expr {
             Mul(a, b) => simplify_nn!(a, b => a * b, else partial),
             Pow(a, b) => simplify_nn!(a, b => a.powf(b), else partial),
             Log(a, b) => simplify_nn!(a, b => a.log(b), else partial),
-            Neg(x) => simplify_nn!(x => -x, else partial),
             Sin(x) => simplify_nn!(x => x.sin(), else partial),
             Cos(x) => simplify_nn!(x => x.cos(), else partial),
             Arcsin(x) => simplify_nn!(x => x.asin(), else partial),
@@ -103,6 +101,6 @@ fn expr() {
     let y_t = s!(t) - s!(t)^2.;
     let field_t = apply!(field, x = x_t, y = y_t);
     assert_eq!(format!("{:?}", field_t),
-    "Add(Pow(Add(Mul(Num(2.0), Symbol(\"t\")), Num(3.0)), Num(2.0)), Pow(Pow(Add(Symbol(\"t\"), Neg(Symbol(\"t\"))), Num(2.0)), Num(0.5)))");
+    "Add(Pow(Add(Mul(Num(2.0), Symbol(\"t\")), Num(3.0)), Num(2.0)), Pow(Pow(Add(Symbol(\"t\"), Mul(Symbol(\"t\"), Num(-1.0))), Num(2.0)), Num(0.5)))");
     assert_eq!(apply!(field_t, t=1.).val().unwrap(), 25.);
 }
