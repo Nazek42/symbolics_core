@@ -40,7 +40,7 @@ macro_rules! s {
 /// }
 /// ```
 macro_rules! apply {
-    ($expr:ident @ $($sym:ident = $sub:expr),+) => {
+    ($expr:expr @ $($sym:ident = $sub:expr),+) => {
         $expr $(.apply1(stringify!($sym), $sub))+
     }
 }
