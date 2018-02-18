@@ -25,7 +25,7 @@ macro_rules! s {
 /// extern crate symbolics_core;
 /// fn main() {
 ///     let expr = s!(x) * s!(x).sqrt();
-///     assert_eq!(apply!(expr @ x=4.).val().unwrap(), 8.);
+///     assert_eq!(apply!(expr, x=4.).val().unwrap(), 8.);
 /// }
 /// ```
 ///
@@ -35,12 +35,12 @@ macro_rules! s {
 /// use std::f64::consts::E;
 /// fn main() {
 ///     let expr = s!(x) + s!(x).sqrt();
-///     let expr_t = apply!(expr @ x = s!(t).ln());
-///     assert_eq!(apply!(expr_t @ t = E).val().unwrap(), 2.);
+///     let expr_t = apply!(expr, x = s!(t).ln());
+///     assert_eq!(apply!(expr_t, t = E).val().unwrap(), 2.);
 /// }
 /// ```
 macro_rules! apply {
-    ($expr:expr @ $($sym:ident = $sub:expr),+) => {
+    ($expr:expr, $($sym:ident = $sub:expr),+) => {
         $expr $(.apply1(stringify!($sym), $sub))+
     }
 }

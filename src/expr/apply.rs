@@ -93,7 +93,7 @@ fn one() {
 #[test]
 fn batch() {
     let scalar_field = s!(x) * s!(y) * s!(z);
-    assert_eq!(apply!(scalar_field @ x = 2., y = 3., z = 4.).val().unwrap(), 24.);
+    assert_eq!(apply!(scalar_field, x = 2., y = 3., z = 4.).val().unwrap(), 24.);
 }
 
 #[test]
@@ -101,8 +101,8 @@ fn expr() {
     let field = (s!(x)^2.) + s!(y).sqrt();
     let x_t = 2.*s!(t) + 3.;
     let y_t = s!(t) - s!(t)^2.;
-    let field_t = apply!(field @ x = x_t, y = y_t);
+    let field_t = apply!(field, x = x_t, y = y_t);
     assert_eq!(format!("{:?}", field_t),
     "Add(Pow(Add(Mul(Num(2.0), Symbol(\"t\")), Num(3.0)), Num(2.0)), Pow(Pow(Add(Symbol(\"t\"), Neg(Symbol(\"t\"))), Num(2.0)), Num(0.5)))");
-    assert_eq!(apply!(field_t @ t=1.).val().unwrap(), 25.);
+    assert_eq!(apply!(field_t, t=1.).val().unwrap(), 25.);
 }
