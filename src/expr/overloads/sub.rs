@@ -1,10 +1,16 @@
-use std::ops::Sub;
+use std::ops::{Sub, SubAssign};
 use ::*;
 
 impl <T> Sub<T> for Expr where T: Into<Expr> {
     type Output = Expr;
     fn sub(self, rhs: T) -> Expr {
         self + (-rhs.into())
+    }
+}
+
+impl <T> SubAssign<T> for Expr where T: Into<Expr> {
+    fn sub_assign(&mut self, rhs: T) {
+        *self = self.clone() - rhs.into()
     }
 }
 

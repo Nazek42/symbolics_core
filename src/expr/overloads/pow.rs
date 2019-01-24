@@ -1,10 +1,16 @@
-use std::ops::BitXor;
+use std::ops::{BitXor, BitXorAssign};
 use ::*;
 
 impl <T> BitXor<T> for Expr where T: Into<Expr> {
     type Output = Expr;
     fn bitxor(self, rhs: T) -> Expr {
         Expr::Pow(Box::new(self.clone()), Box::new(rhs.into()))
+    }
+}
+
+impl <T> BitXorAssign<T> for Expr where T: Into<Expr> {
+    fn bitxor_assign(&mut self, rhs: T) {
+        *self = self.clone() ^ rhs.into()
     }
 }
 

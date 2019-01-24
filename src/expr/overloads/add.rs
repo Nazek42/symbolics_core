@@ -1,10 +1,16 @@
-use std::ops::Add;
+use std::ops::{Add, AddAssign};
 use ::*;
 
 impl <T> Add<T> for Expr where T: Into<Expr> {
     type Output = Expr;
     fn add(self, rhs: T) -> Expr {
         Expr::Add(Box::new(self.clone()), Box::new(rhs.into()))
+    }
+}
+
+impl <T> AddAssign<T> for Expr where T: Into<Expr> {
+    fn add_assign(&mut self, rhs: T) {
+        *self = self.clone() + rhs.into()
     }
 }
 

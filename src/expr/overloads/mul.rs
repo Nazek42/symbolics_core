@@ -1,10 +1,16 @@
-use std::ops::Mul;
+use std::ops::{Mul, MulAssign};
 use ::*;
 
 impl <T> Mul<T> for Expr where T: Into<Expr>{
     type Output = Expr;
     fn mul(self, rhs: T) -> Expr {
         Expr::Mul(Box::new(self.clone()), Box::new(rhs.into()))
+    }
+}
+
+impl <T> MulAssign<T> for Expr where T: Into<Expr> {
+    fn mul_assign(&mut self, rhs: T) {
+        *self = self.clone() * rhs.into()
     }
 }
 

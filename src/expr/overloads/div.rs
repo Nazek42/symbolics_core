@@ -1,10 +1,16 @@
-use std::ops::Div;
+use std::ops::{Div, DivAssign};
 use ::*;
 
 impl <T> Div<T> for Expr where T: Into<Expr>{
     type Output = Expr;
     fn div(self, rhs: T) -> Expr {
         self * (rhs.into() ^ -1.)
+    }
+}
+
+impl <T> DivAssign<T> for Expr where T: Into<Expr> {
+    fn div_assign(&mut self, rhs: T) {
+        *self = self.clone() / rhs.into()
     }
 }
 
