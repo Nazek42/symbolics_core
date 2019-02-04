@@ -43,9 +43,10 @@ impl Expr {
     ///       assert_eq!(format!("{:?}", y_t), "Add(Mul(Num(3.0), Pow(Symbol(\"t\"), Num(2.0))), Num(2.0))")
     /// # }
     /// ```
-    pub fn apply1<T>(self, name: &'static str, value: T) -> Expr
+    pub fn apply1<T, S: AsRef<str>>(self, name_raw: S, value: T) -> Expr
     where T: Clone + Into<Expr> {
         use Expr::*;
+        let name = name_raw.as_ref();
         let partial = match self {
             Symbol(s) => if s == name {
                 value.into()
